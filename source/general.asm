@@ -20,7 +20,7 @@ RenderScene                                      proc                           
 
                                                  Save_Registers                                                        ; Save incoming registers
 
-                                                 ;-----[Rotate the triangle]Ä-------------------------------------------
+                                                 ;-----[Rotate the triangle]ï¿½-------------------------------------------
                                                  ;
                                                  ; rotationAngle += angleIncrement
 
@@ -43,7 +43,7 @@ RenderScene                                      proc                           
                                                  jnz                 RenderScene_00001                                 ; No -- no reset
                                                  xorps               xmm0, xmm0                                        ; Yes -- reset angle
 
-                                                 ;-----[Rotate the triangle]Ä-------------------------------------------
+                                                 ;-----[Rotate the triangle]ï¿½-------------------------------------------
                                                  ;
                                                  ; mWorld = XMMatrixRotationY( rot);
                                                  ;
@@ -447,16 +447,28 @@ SetupDirectX                                     proc                           
 
                                                  ;-----[Compile the vertex shader]--------------------------------------
                                                  ;
-                                                 ; hr = D3DX11CompileFromFile(L"Effects.fx", 0, 0, "VS", "vs_4_0", 0, 0,
+                                                 ; hr = D3DCompileFromFile(L"Effects.fx", 0, 0, "VS", "vs_4_0", 0, 0,
                                                  ;                              0, &VS_Buffer, 0, 0);
 
-                                                 lea                 r13, VS_Buffer                                    ; Set **ppShader
-                                                 lea                 r12, vs_profile                                   ; Set pProfile
-                                                 lea                 r9, vs_Function                                   ; Set pFunctionName
+                                                 ;HRESULT D3DCompileFromFile(
+                                                 ;[in]            LPCWSTR                pFileName,
+                                                 ;[in, optional]  const D3D_SHADER_MACRO *pDefines,
+                                                 ;[in, optional]  ID3DInclude            *pInclude,
+                                                 ;[in]            LPCSTR                 pEntrypoint,
+                                                 ;[in]            LPCSTR                 pTarget,
+                                                 ;[in]            UINT                   Flags1,
+                                                 ;[in]            UINT                   Flags2,
+                                                 ;[out]           ID3DBlob               **ppCode,
+                                                 ;[out, optional] ID3DBlob               **ppErrorMsgs
+                                                 ;);
+                                                ;  lea                 r14, VS_ErrorMsg
+                                                 lea                 r13, VS_Buffer                                    ; Set **ppCode
+                                                 lea                 r12, vs_profile                                   ; Set pTarget
+                                                 lea                 r9, vs_Function                                   ; Set pEntrypoint
                                                  xor                 r8, r8                                            ; Set pInclude
                                                  xor                 rdx, rdx                                          ; Set *pDefines
-                                                 lea                 rcx, effect_file                                  ; Set pSrcFile
-                                                 WinCall             D3DX11CompileFromFile, rcx, rdx, r8, r9, r12, 0, 0, 0, r13, 0, 0
+                                                 lea                 rcx, effect_file                                  ; Set pFileName
+                                                 WinCall             D3DCompileFromFile, rcx, rdx, r8, r9, r12, 0, 0, r13, 0
 
                                                  ;-----[----------------------------------------------------------------
 
@@ -470,7 +482,7 @@ SetupDirectX                                     proc                           
                                                  xor                 r8, r8                                            ; Set pInclude
                                                  xor                 rdx, rdx                                          ; Set *pDefines
                                                  lea                 rcx, effect_file                                  ; Set pSrcFile
-                                                 WinCall             D3DX11CompileFromFile, rcx, rdx, r8, r9, r12, 0, 0, 0, r13, 0, 0
+                                                 WinCall             D3DCompileFromFile, rcx, rdx, r8, r9, r12, 0, 0, r13, 0
 
                                                  ;-----[----------------------------------------------------------------
 

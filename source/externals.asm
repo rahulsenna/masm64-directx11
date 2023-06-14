@@ -21,7 +21,7 @@ extrn                                            __imp_DefWindowProcA:qword     
 extrn                                            __imp_DestroyWindow:qword                                             ;
 extrn                                            __imp_DispatchMessageA:qword                                          ;
 extrn                                            __imp_D3D11CreateDeviceAndSwapChain:qword                             ;
-extrn                                            __imp_D3DX11CompileFromFileA:qword                                    ;
+extrn                                            __imp_D3DCompileFromFile:qword                                    ;
 
 ;------[E]--------------------------------------------------------------------------------------------------------------
 
@@ -122,7 +122,7 @@ CreateWindowEx                                   textequ             <__imp_Crea
 ;------[D]--------------------------------------------------------------------------------------------------------------
 
 D3D11CreateDeviceAndSwapChain                    textequ             <__imp_D3D11CreateDeviceAndSwapChain>             ;
-D3DX11CompileFromFile                            textequ             <__imp_D3DX11CompileFromFileA>                    ;
+D3DCompileFromFile                               textequ             <__imp_D3DCompileFromFile>                        ;
 DefWindowProc                                    textequ             <__imp_DefWindowProcA>                            ;
 DestroyWindow                                    textequ             <__imp_DestroyWindow>                             ;
 DispatchMessage                                  textequ             <__imp_DispatchMessageA>                          ;

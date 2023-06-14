@@ -51,7 +51,7 @@
 ;-----------------------------------------------------------------------------------------------------------------------
 
 Startup                                          proc                                                                  ; Declare function
-
+                                                 local               holder:qword
 ;----- [Fix the WinDbg bug] --------------------------------------------------------------------------------------------
 
                                                  LocalCall           FixWinDbg                                         ; Execute call
@@ -72,7 +72,8 @@ Startup                                          proc                           
                                                  ;-----[Terminate the application]--------------------------------------
 
                                                  xor                 rcx, rcx                                          ; Set final return code
-                                                 call                ExitProcess                                       ; Exit this process
+                                                 WinCall             ExitProcess                                       ; Exit this process
+                                                 xor                 rax, rax                                          ; Set final return code
 
 Startup                                          endp                                                                  ; End startup function
 

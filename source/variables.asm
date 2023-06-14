@@ -103,6 +103,7 @@ vBufferSize                                      qword               ?          
 vertLayout                                       qword               ?                                                 ; ID3D11InputLayout
 vs                                               qword               ?                                                 ; ID3D11VertexShader
 VS_Buffer                                        qword               ?                                                 ; ID3D10Blob: vertex shader
+VS_ErrorMsg                                      qword               ?                                                 ; ID3D10Blob: vertex shader
 
 ;-----[W]---------------------------------------------------------------------------------------------------------------
 
